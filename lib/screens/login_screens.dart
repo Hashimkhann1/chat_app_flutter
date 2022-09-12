@@ -1,3 +1,5 @@
+import 'package:chat_flutter_app/components/rounded_btn.dart';
+import 'package:chat_flutter_app/constant.dart';
 import 'package:chat_flutter_app/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -59,25 +61,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                 color: Colors.black
               ),
               onChanged: (value){},
-              decoration: InputDecoration(
-                hintText: 'Enter Your Email',
-                hintStyle: TextStyle(color: Colors.black38),
-                contentPadding:
-                EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(32.0))
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: 
-                    BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                  borderRadius: BorderRadius.all(Radius.circular(32.0))
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 2.0),
-                  borderRadius: BorderRadius.all(Radius.circular(32.0))
-                )
-              ),
+              decoration: kTextFieldDecoration.copyWith(hintText: 'Enter Your Email')
             ),
             SizedBox(
               height: 10.0,
@@ -90,38 +74,13 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
               style: TextStyle(
                 color: Colors.black
               ),
-              decoration: InputDecoration(
-                hintText: 'Enter Your Password',
-                hintStyle: TextStyle(color: Colors.black38),
-                contentPadding: EdgeInsets.symmetric(vertical: 8.0 , horizontal: 20.0),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(32.0))
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                  borderRadius: BorderRadius.all(Radius.circular(32.0))
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
-                  borderRadius: BorderRadius.all(Radius.circular(32.0))
-                )
-              ),
+              decoration: kTextFieldDecoration.copyWith(hintText: 'Enter Your Password'),
             ),
             SizedBox(height: 14.0,),
-            Material(
-              elevation: 5.0,
-              color: Colors.lightBlueAccent,
-              borderRadius: BorderRadius.circular(24.0),
-              child: MaterialButton(
-                onPressed: (){},
-                child: Text('Login',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 17.0,
-                  fontWeight: FontWeight.w600
-                ),),
-              ),
-            ),
+            RoundedButton(
+              title: 'Login',
+              btnColor: Colors.lightBlueAccent,
+              Pressed: () {},),
             SizedBox(height: 8.0,),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,

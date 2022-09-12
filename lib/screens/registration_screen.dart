@@ -1,3 +1,5 @@
+import 'package:chat_flutter_app/components/rounded_btn.dart';
+import 'package:chat_flutter_app/constant.dart';
 import 'package:chat_flutter_app/screens/login_screens.dart';
 import 'package:flutter/material.dart';
 
@@ -65,21 +67,7 @@ class _RegistrationScrrenState extends State<RegistrationScrren> with SingleTick
                 style: TextStyle(
                   color: Colors.black,
                 ),
-                decoration: InputDecoration(
-                    hintText: 'Full Name',
-                    hintStyle: TextStyle(
-                        color: Colors.black38
-                    ),
-                    contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                        borderRadius: BorderRadius.all(Radius.circular(32.0))
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
-                        borderRadius: BorderRadius.all(Radius.circular(32.0))
-                    )
-                ),
+                decoration: kTextFieldDecoration.copyWith(hintText: 'Full Name')
               ),
               SizedBox(height: 10.0,),
               TextField(
@@ -87,21 +75,7 @@ class _RegistrationScrrenState extends State<RegistrationScrren> with SingleTick
                 style: TextStyle(
                   color: Colors.black,
                 ),
-                decoration: InputDecoration(
-                    hintText: 'Email',
-                    hintStyle: TextStyle(
-                        color: Colors.black38
-                    ),
-                    contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                        borderRadius: BorderRadius.all(Radius.circular(32.0))
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
-                        borderRadius: BorderRadius.all(Radius.circular(32.0))
-                    )
-                ),
+                decoration: kTextFieldDecoration.copyWith(hintText: 'Email')
               ),
               SizedBox(height: 10.0,),
               TextField(
@@ -112,37 +86,15 @@ class _RegistrationScrrenState extends State<RegistrationScrren> with SingleTick
                 style: TextStyle(
                   color: Colors.black,
                 ),
-                decoration: InputDecoration(
-                    hintText: 'Password',
-                    hintStyle: TextStyle(
-                        color: Colors.black38
-                    ),
-                    contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                        borderRadius: BorderRadius.all(Radius.circular(32.0))
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
-                        borderRadius: BorderRadius.all(Radius.circular(32.0))
-                    )
-                ),
+                decoration: kTextFieldDecoration.copyWith(hintText: 'Password')
               ),
               SizedBox(height: 14.0,),
               Padding(
-
-                padding: const EdgeInsets.symmetric(horizontal: 28.0),
-                child: Material(
-                  elevation: 5.0,
-                  color: Colors.lightBlueAccent,
-                  borderRadius: BorderRadius.circular(24.0),
-                  child: MaterialButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Register'
-                    ),
-                  ),
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: RoundedButton(
+                  title: 'Register',
+                  btnColor: Colors.lightBlueAccent,
+                  Pressed: () {},),
               ),
               SizedBox(height: 14.0,),
               Row(
