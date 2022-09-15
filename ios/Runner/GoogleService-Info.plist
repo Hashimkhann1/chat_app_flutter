@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>337006714684-ip5l4ao0pc9c53tntmlenmo3smma8f52.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.337006714684-ip5l4ao0pc9c53tntmlenmo3smma8f52</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBFeVJHDSFy_EDMuN9y4saqnUlfolLbT4A</string>
+	<key>GCM_SENDER_ID</key>
+	<string>337006714684</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.hmk.chatFlutterApp</string>
+	<key>PROJECT_ID</key>
+	<string>facebook-be0b6</string>
+	<key>STORAGE_BUCKET</key>
+	<string>facebook-be0b6.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:337006714684:ios:ea5b8096643ecd73cb8839</string>
+</dict>
+</plist>
