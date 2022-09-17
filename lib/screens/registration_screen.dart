@@ -1,7 +1,9 @@
 import 'package:chat_flutter_app/components/rounded_btn.dart';
 import 'package:chat_flutter_app/constant.dart';
+import 'package:chat_flutter_app/screens/chat_screen.dart';
 import 'package:chat_flutter_app/screens/login_screens.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 class RegistrationScrren extends StatefulWidget {
@@ -13,8 +15,11 @@ class RegistrationScrren extends StatefulWidget {
 }
 class _RegistrationScrrenState extends State<RegistrationScrren> with SingleTickerProviderStateMixin {
 
+  final _auth = FirebaseAuth.instance;
    late AnimationController controller;
    late Animation animation;
+   late String email;
+   late String password;
 
    @override
   void initState() {
@@ -63,6 +68,7 @@ class _RegistrationScrrenState extends State<RegistrationScrren> with SingleTick
               ),
               SizedBox(height: 12.0,),
               TextField(
+                textAlign: TextAlign.center,
                 onChanged: (value){},
                 style: TextStyle(
                   color: Colors.black,
@@ -71,7 +77,11 @@ class _RegistrationScrrenState extends State<RegistrationScrren> with SingleTick
               ),
               SizedBox(height: 10.0,),
               TextField(
-                onChanged: (value){},
+                keyboardType: TextInputType.emailAddress,
+                textAlign: TextAlign.center,
+                onChanged: (value){
+                  email = value;
+                },
                 style: TextStyle(
                   color: Colors.black,
                 ),
@@ -79,7 +89,10 @@ class _RegistrationScrrenState extends State<RegistrationScrren> with SingleTick
               ),
               SizedBox(height: 10.0,),
               TextField(
-                onChanged: (value){},
+                textAlign: TextAlign.center,
+                onChanged: (value){
+                  password = value;
+                },
                 obscureText: true,
                 autocorrect: false,
                 enableSuggestions: false,
@@ -94,7 +107,20 @@ class _RegistrationScrrenState extends State<RegistrationScrren> with SingleTick
                 child: RoundedButton(
                   title: 'Register',
                   btnColor: Colors.lightBlueAccent,
-                  Pressed: () {},),
+                  Pressed: () async {
+                    // print(email);
+                    // print(password);
+                    try{
+                      final newUser = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+                      if(newUser != null){
+                        Navigator.pushNamed(context, ChatScreen.id);
+                        print(newUser);
+                      }
+                    }
+                    catch(error){
+                      print('erorr while creating new user $error');
+                    }
+                  },),
               ),
               SizedBox(height: 14.0,),
               Row(
