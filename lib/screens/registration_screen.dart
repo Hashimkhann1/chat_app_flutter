@@ -4,6 +4,7 @@ import 'package:chat_flutter_app/screens/chat_screen.dart';
 import 'package:chat_flutter_app/screens/login_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 
 class RegistrationScrren extends StatefulWidget {
@@ -20,6 +21,7 @@ class _RegistrationScrrenState extends State<RegistrationScrren> with SingleTick
    late Animation animation;
    late String email;
    late String password;
+   bool showSpiner = false;
 
    @override
   void initState() {
@@ -52,96 +54,94 @@ class _RegistrationScrrenState extends State<RegistrationScrren> with SingleTick
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Hero(
-                tag: 'logo',
-                child: Container(
-                  child: Image.asset('images/logo.png'),
-                  height: animation.value * 130,
+      body: ModalProgressHUD(
+        inAsyncCall: showSpiner,
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Hero(
+                  tag: 'logo',
+                  child: Container(
+                    child: Image.asset('images/logo.png'),
+                    height: animation.value * 130,
+                  ),
                 ),
-              ),
-              SizedBox(height: 12.0,),
-              TextField(
-                textAlign: TextAlign.center,
-                onChanged: (value){},
-                style: TextStyle(
-                  color: Colors.black,
+                SizedBox(height: 12.0,),
+                TextField(
+                  keyboardType: TextInputType.emailAddress,
+                  textAlign: TextAlign.center,
+                  onChanged: (value){
+                    email = value;
+                  },
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                  decoration: kTextFieldDecoration.copyWith(hintText: 'Email')
                 ),
-                decoration: kTextFieldDecoration.copyWith(hintText: 'Full Name')
-              ),
-              SizedBox(height: 10.0,),
-              TextField(
-                keyboardType: TextInputType.emailAddress,
-                textAlign: TextAlign.center,
-                onChanged: (value){
-                  email = value;
-                },
-                style: TextStyle(
-                  color: Colors.black,
+                SizedBox(height: 10.0,),
+                TextField(
+                  textAlign: TextAlign.center,
+                  onChanged: (value){
+                    password = value;
+                  },
+                  obscureText: true,
+                  autocorrect: false,
+                  enableSuggestions: false,
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                  decoration: kTextFieldDecoration.copyWith(hintText: 'Password')
                 ),
-                decoration: kTextFieldDecoration.copyWith(hintText: 'Email')
-              ),
-              SizedBox(height: 10.0,),
-              TextField(
-                textAlign: TextAlign.center,
-                onChanged: (value){
-                  password = value;
-                },
-                obscureText: true,
-                autocorrect: false,
-                enableSuggestions: false,
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-                decoration: kTextFieldDecoration.copyWith(hintText: 'Password')
-              ),
-              SizedBox(height: 14.0,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: RoundedButton(
-                  title: 'Register',
-                  btnColor: Colors.lightBlueAccent,
-                  Pressed: () async {
-                    // print(email);
-                    // print(password);
-                    try{
-                      final newUser = await _auth.createUserWithEmailAndPassword(email: email, password: password);
-                      if(newUser != null){
-                        Navigator.pushNamed(context, ChatScreen.id);
-                        print(newUser);
+                SizedBox(height: 14.0,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: RoundedButton(
+                    title: 'Register',
+                    btnColor: Colors.lightBlueAccent,
+                    Pressed: () async {
+                      setState(() {
+                        showSpiner = true;
+                      });
+                      try{
+                        final newUser = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+                        if(newUser != null){
+                          Navigator.pushNamed(context, ChatScreen.id);
+                          print(newUser);
+                        }
+                        setState(() {
+                          showSpiner = false;
+                        });
                       }
-                    }
-                    catch(error){
-                      print('erorr while creating new user $error');
-                    }
-                  },),
-              ),
-              SizedBox(height: 14.0,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  MaterialButton(
-                    onPressed: (){
-                      Navigator.pushNamed(context, LoginScreen.id);
-                    },
-                    child: Text('Already Have Account',
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        decorationColor: Colors.black54,
-                        color: Colors.black54,
-                        fontSize: 15.0,
+                      catch(error){
+                        print('erorr while creating new user $error');
+                      }
+                    },),
+                ),
+                SizedBox(height: 14.0,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    MaterialButton(
+                      onPressed: (){
+                        Navigator.pushNamed(context, LoginScreen.id);
+                      },
+                      child: Text('Already Have Account',
+                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          decorationColor: Colors.black54,
+                          color: Colors.black54,
+                          fontSize: 15.0,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
