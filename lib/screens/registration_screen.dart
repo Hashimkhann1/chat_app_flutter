@@ -63,11 +63,13 @@ class _RegistrationScrrenState extends State<RegistrationScrren> with SingleTick
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                Hero(
-                  tag: 'logo',
-                  child: Container(
-                    child: Image.asset('images/logo.png'),
-                    height: animation.value * 130,
+                Flexible(
+                  child: Hero(
+                    tag: 'logo',
+                    child: Container(
+                      child: Image.asset('images/logo.png'),
+                      height: animation.value * 130,
+                    ),
                   ),
                 ),
                 SizedBox(height: 12.0,),

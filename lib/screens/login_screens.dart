@@ -58,11 +58,13 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-                child: Container(
-                  child: Image.asset('images/logo.png'),
-                  height: animation.value * 130,
+              Flexible(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20.0),
+                  child: Container(
+                    child: Image.asset('images/logo.png'),
+                    height: animation.value * 130,
+                  ),
                 ),
               ),
               TextField(
