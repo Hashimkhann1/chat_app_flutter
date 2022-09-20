@@ -101,6 +101,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                   });
                   try{
                   final user = await _auth.signInWithEmailAndPassword(email: email, password: password);
+                  // final testUser = _auth.signInWithPopup(provider)
                   if(user != null) {
                     Navigator.pushNamed(context, ChatScreen.id);
                     setState(() {
